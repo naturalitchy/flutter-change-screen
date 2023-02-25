@@ -19,40 +19,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    print('1');
+
     super.initState();    // 부모 initState 실행.
-    print('2');
+
     Timer.periodic(
       Duration(seconds: 3),
       (timer) {
-        print('3');
         // 현재 페이지 get. .page를 통해 값을 가져오면 double형태로 가져온다.
         // 여기서 animateToPage에 정수만 넣어야 하기 때문에 미리 정수로 변경(toInt)
         int? currentPage = pageController.page?.toInt();
-        print('4');
-        String aa = 'Page = $currentPage';
-        print(aa);
         // 현재 페이지가 없으면 종료
         if(currentPage == null) {
-          print('5');
           return;
         }
 
         // 마지막 5페이지 까지 돌았으면 다시 현재페이지를 0으로 설정.
         if(currentPage == 4) {
           currentPage = 0;
-          print('6 => 밑에 나오는 currentPage는 0이냐?');
         } else {
           currentPage++;
-          print('7');
         }
 
         pageController.animateToPage(
           currentPage,
-          duration: Duration(seconds: 1),
+          duration: Duration(seconds: 3),   // 이미지가 바뀌는데 걸리는 시간. 옆스크롤 속도.
           curve: Curves.ease
         );
-        print('8');
 
       },
     );
